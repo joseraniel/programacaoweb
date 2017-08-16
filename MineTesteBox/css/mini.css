@@ -1,0 +1,34 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body, html{
+    height: 100%;
+    margin: 0;
+}
+.wraper{
+    display: flex;
+    width: 80%;
+    height: 100%;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 2px;
+    position: relative;
+    
+}
+main{
+    flex-grow: 1;
+    border: 1px solid red;
+    margin: 2px;
+    padding: 2px;
+}
+footer{
+    border: 1px solid blue;
+    margin: 2px;
+    padding: 2px;
+}
+header{
+    border: 1px solid green;
+    margin: 2px;
+    padding: 2px;
+}
