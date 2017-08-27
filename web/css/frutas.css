@@ -1,0 +1,11 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    height: 0px;
+}
+header{
+    border solid 1px;
+    padding: 2px;
+    margin: 2px;
+    height: 1px;
+}

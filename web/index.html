@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            Minha Pagina JavaScript.
+        </title>
+        <link rel="icon" href="imagem/favicon.ico" type="image/x-icon" />
+    </head>
+    <body>
+        <script>
+            var frutas = [];
+            var continuar = "n";
+            do{
+                var fruta = prompt("Digite o Nome de uma Fruta: ");
+                frutas.push(fruta);
+                continuar = prompt("Deseja continuar? Sim (s): ou Não (n): ");
+                
+            }while (continuar.toLowerCase() == "s")
+            console.log("for");
+            for (var i = 0; i < frutas.length; i++){
+                console.log (frutas[i]);
+            }
+        </script>
+        <header>
+            <h1>
+                Pagina de Frutas.
+            </h1>
+        </header>
+        <main>
+            <h3>
+                Corpo.
+            </h3>
+        </main>
+        <footer>
+            <h4>
+                Rodape.
+            </h4>
+        </footer>
+    </body>
+</html>
