@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html ng-app="angular">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Angular Js
+    </title>
+    <script type="application/x-javascript" src="angular-1.6.5/angular.min.js"></script>
+    <script>
+        
+        angular.module("angular").controller("zumbisCtrl", function($scope) {
+                    $scope.ocorrencias = [];
+
+                    $scope.adicionar = function(ocorrencia) {
+                        $scope.ocorrencias.push(angular.copy(ocorrencia));
+        });
+        
+            
+        angular.module("angular").directive("ngzumbiSubmit", function() {
+                    return {
+                        restrict: "E",
+                        require: "^form",
+                        scope:{
+                            submit:"&"
+                        },
+                        template: "  <button  type="submit" class="btn btn-primary"> Salvar </button>"
+                        link: function($escope, $element, $attrs, formCtrl) {
+                            $element.on("click", function(){
+                                if(formCtrl.$valid){
+                                    $scope.submit();
+                                }
+                                else{
+                                    alert("Formulario é Invalido")
+                                }
+                    });
+                        }
+                    }
+                });
+    
+        
+        angular.module("angular").directive("ngBlur", function() {
+                    return {
+                        restrict: "A",
+                        require: "ng-model",
+                        link: function($escope, $element, $attrs, ngmodel) {
+                            $element.on("blur", function() {
+                                if (ngmodel.$invalid) {
+                                    $element.addClass("error");
+                                } else {
+                                    $element.removeClass("error");
+                                }
+                            });
+                        }
+                    }
+                });
+
+    </script>
+    <style>
+        .error {
+            border-color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div ng-controller="zumbisCtrl" class="conteiner">
+        <div class="well">
+            <h1>
+                Ocorrências de Zumbis
+            </h1>
+        </div>
+        <table ng-if="ocorrencias.length > 0">
+            <thead>
+                <th>
+                    Cep
+                </th>
+                <th>
+                    Bairro
+                </th>
+                <th>
+                    Número
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="ocorrencia in ocorrencias">
+                    <td>
+                        {{ocorrencia.cep}}
+                    </td>
+                    <td>
+                        {{ocorrencia.bairro}}
+                    </td>
+                    <td>
+                        {{ocorrencia.numero}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <form name="formzumbi">
+                <div class="form-group">
+                    <label>
+                        Cep:
+                </label>
+                    <input ng-blur ng-model="ocorrencia.cep" ng-pattern="/^[0-9]{5}-[0-9]{3}$/" type="text" class="form-group" />
+                </div>
+                <div class="form-group">
+                    <label>
+                        Bairro:
+                </label>
+                    <input ng-blur ng-model="ocorrencia.bairro" ng-minlength="4" type="text" class="form-group" />
+                </div>
+                <div class="form-group">
+                    <label>
+                        Número de Ocorrências: 
+                </label>
+                    <input ng-blur ng-model="ocorrencia.numero" required type="text" class="form-group" />
+                </div>
+              <ng-zumbi-submit submit="adiciona(ocorrencia)"></ng-zumbi-submit>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
